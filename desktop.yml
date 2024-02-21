@@ -17,5 +17,5 @@
   tasks:
   - name: install desktop applications from homebrew
     community.general.homebrew:
-    name: "{{mac_config_desktop_apps}}"
-    state: present
+      name: "{{mac_config_desktop_apps}}"
+      state: present
