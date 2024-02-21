@@ -5,6 +5,7 @@
     mac_config_fix_apps:
       - rectangle
       - maccy
+      - macfuse
   tasks:
     - name: install apps to improve QoL
       community.general.homebrew:

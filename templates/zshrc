@@ -100,7 +100,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export VISUAL=vim
+export VISUAL=mvim
 export EDITOR=vim
 export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
 

@@ -1,7 +1,19 @@
 set number
 set relativenumber
 
+set ttymouse=xterm2
+set mouse=a
 set softtabstop={{mac_config_indent_size}}
 set tabstop={{mac_config_indent_size}}
 set shiftwidth={{mac_config_indent_size}}
 set expandtab
+
+syntax enable
+
+" Toggle NERDTree
+nnoremap <C-t> :NERDTreeToggle<CR>
+" Start NERDTree and put the cursor back in the other window.
+"autocmd VimEnter * NERDTree | wincmd p
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+

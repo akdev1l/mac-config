@@ -1,0 +1,5 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Alex
+	email = alex@akdev.xyz
+	signingkey = AFDA17DB3CCF7CA8894A79B749C419E8D3603081
