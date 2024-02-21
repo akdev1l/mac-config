@@ -1,0 +1,12 @@
+---
+- name: install fixes for Mac annoyances
+  hosts: localhost
+  vars:
+    mac_config_fix_apps:
+      - rectangle
+      - maccy
+  tasks:
+    - name: install apps to improve QoL
+      community.general.homebrew:
+        state: present
+        name: "{{mac_config_fix_apps}}"

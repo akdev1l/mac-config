@@ -1,0 +1,7 @@
+set number
+set relativenumber
+
+set softtabstop={{mac_config_indent_size}}
+set tabstop={{mac_config_indent_size}}
+set shiftwidth={{mac_config_indent_size}}
+set expandtab

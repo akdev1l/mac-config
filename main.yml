@@ -1,0 +1,12 @@
+---
+- name: Configure Homebrew
+  import_playbook: homebrew.yml
+
+- name: Install development tools
+  import_playbook: devtools.yml
+
+- name: Install Mac QoL Fixes
+  import_playbook: macfix.yml
+
+- name: Configure Terminal Access
+  import_playbook: terminal.yml
