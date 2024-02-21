@@ -11,5 +11,8 @@
 - name: Configure Terminal Access
   import_playbook: terminal.yml
 
+- name: Configure Desktop Applications
+  import_playbook: desktop.yml
+
 - name: Configure Work and Productivity Apps
   import_playbook: work.yml

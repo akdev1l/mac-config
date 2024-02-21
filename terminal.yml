@@ -22,6 +22,16 @@
         state: present
         name: "{{mac_config_terminal_apps}}"
 
+    - name: clone vim plugins
+      git:
+        repo: "{{item.repo}}"
+        dest: "{{item.dest}}"
+      loop:
+        - repo: https://github.com/vim-airline/vim-airline-themes 
+          dest: "{{ansible_env.HOME}}/.vim/pack/dist/start/vim-airline-themes"
+        - repo: https://github.com/preservim/nerdtree.git
+          dest: "{{ansible_env.HOME}}/.vim/pack/vendor/start/nerdtree"
+
     - name: configure vim
       template:
         src: vimrc
