@@ -8,6 +8,11 @@
       - pgadmin4
       - podman
       - cmake
+      - jq
+      - aws-sam-cli
+      - awscli
+      - aws-cdk
+      - ripgrep
   tasks:
     - name: install nodejs, podman, python, psql
       community.general.homebrew:

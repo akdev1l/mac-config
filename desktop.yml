@@ -1,0 +1,21 @@
+---
+- name: install and configure desktop applications
+  hosts: localhost
+  vars:
+    mac_config_desktop_apps:
+      - amazon-workspaces
+      - adobe-acrobat-reader
+      - keepassxc
+      - google-drive
+      - brave-browser
+      - firefox
+      - veracrypt
+      - signal
+      - yubico-authenticator 
+      - yubikey-personalization
+      - yubico-yubikey-manager
+  tasks:
+  - name: install desktop applications from homebrew
+    community.general.homebrew:
+    name: "{{mac_config_desktop_apps}}"
+    state: present

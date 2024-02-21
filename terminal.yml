@@ -7,8 +7,11 @@
       - iterm2
       - htop
       - tmux
-      - vim
+      - macvim
       - jq
+      - ripgrep
+      - git
+      - gpg2
       - homebrew/cask-fonts/font-fira-code
       - homebrew/cask-fonts/font-fira-mono-for-powerline
       - zsh-syntax-highlighting
@@ -43,3 +46,8 @@
       template:
         src: zshrc
         dest: "{{ansible_env.HOME}}/.zshrc"
+
+    - name: deploy .gitconfig
+      template:
+        src: gitconfig
+        dest: "{{ansible_env.HOME}}/.gitconfig"

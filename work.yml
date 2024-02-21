@@ -1,0 +1,24 @@
+---
+- name: install and configure productivity applications
+  hosts: localhost
+  vars:
+    mac_config_work_chat_apps:
+      - amazon-chime
+      - slack
+    mac_config_work_apps:
+      - amazon-workdocs
+      - quip
+  tasks:
+    - name: end configuration if we are not at work
+      when: not ansible_hostname.endswith('amazon.com')
+      ansible.builtin.meta: end_play
+      
+    - name: install chat applications
+      community.general.homebrew:
+        name: "{{mac_config_work_apps}}"
+        state: present
+
+    - name: install productivity applications
+      community.general.homebrew:
+        name: "{{mac_config_work_productivity_apps}}"
+        state: present
