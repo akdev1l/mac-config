@@ -1,0 +1,15 @@
+---
+- name: configure homebrew
+  hosts: localhost
+  tasks:
+    - name: create /opt/homebrew
+      file:
+        state: directory
+        path: /opt/homebrew
+        owner: "{{ansible_user_id}}"
+      become: true
+
+    - name: install homebrew
+      shell: NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      args:
+        creates: /opt/homebrew/bin

@@ -1,0 +1,15 @@
+---
+- name: install and configure development tools
+  hosts: localhost
+  vars:
+    mac_config_apps:
+      - gcc
+      - llvm
+      - pgadmin4
+      - podman
+      - cmake
+  tasks:
+    - name: install nodejs, podman, python, psql
+      community.general.homebrew:
+        state: present
+        name: "{{mac_config_apps}}"

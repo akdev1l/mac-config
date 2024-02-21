@@ -1,0 +1,45 @@
+---
+- name: install fixes for Mac annoyances
+  hosts: localhost
+  vars:
+    mac_config_indent_size: 2
+    mac_config_terminal_apps:
+      - iterm2
+      - htop
+      - tmux
+      - vim
+      - jq
+      - homebrew/cask-fonts/font-fira-code
+      - homebrew/cask-fonts/font-fira-mono-for-powerline
+      - zsh-syntax-highlighting
+      - zsh-autosuggestions
+  tasks:
+    - name: install terminal apps
+      community.general.homebrew:
+        state: present
+        name: "{{mac_config_terminal_apps}}"
+
+    - name: configure vim
+      template:
+        src: vimrc
+        dest: "{{ansible_env.HOME}}/.vimrc"
+
+    - name: install tmux-themepack
+      git:
+        repo: https://github.com/jimeh/tmux-themepack.git
+        dest: "{{ansible_env.HOME}}/.tmux-themepack"
+
+    - name: configure tmux
+      template:
+        src: tmux.conf
+        dest: "{{ansible_env.HOME}}/.tmux.conf"
+
+    - name: install oh-my-zsh
+      shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended --keep-zshrc
+      args:
+        creates: "{{ansible_env.HOME}}/.oh-my-zsh"
+
+    - name: deploy .zshrc
+      template:
+        src: zshrc
+        dest: "{{ansible_env.HOME}}/.zshrc"
