@@ -108,3 +108,13 @@ export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Password management
+kp-token() {
+  keepassxc-cli show \
+    --yubikey 1 -a password \
+  ~/gdrive/documents/keepass/tokens.kdbx "$1"
+}
+kp-gh() {
+  kp-token /Github
+}
