@@ -22,3 +22,5 @@
       community.general.homebrew:
         name: "{{mac_config_work_productivity_apps}}"
         state: present
+
+- import_playbook: work-private.yml
