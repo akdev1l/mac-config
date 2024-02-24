@@ -13,6 +13,7 @@
       - awscli
       - aws-cdk
       - ripgrep
+      - gh
   tasks:
     - name: install nodejs, podman, python, psql
       community.general.homebrew:
