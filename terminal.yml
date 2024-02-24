@@ -8,6 +8,8 @@
       - htop
       - tmux
       - macvim
+      - fzf
+      - vivid
       - jq
       - ripgrep
       - git

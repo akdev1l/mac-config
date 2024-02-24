@@ -11,3 +11,6 @@
       community.general.homebrew:
         state: present
         name: "{{mac_config_fix_apps}}"
+
+    - name: fix the default location for screenshots
+      shell: "defaults write com.apple.screencapture location {{ansible_env.HOME}}/Documents/workshop/screenshots"
