@@ -8,7 +8,9 @@
       - keepassxc
       - google-drive
       - brave-browser
+      - ungoogled-chromium
       - firefox
+      - waterfox
       - veracrypt
       - signal
       - yubico-authenticator 

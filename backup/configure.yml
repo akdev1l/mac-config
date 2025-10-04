@@ -1,0 +1,32 @@
+---
+- name: configure cloud backups
+  hosts: localhost
+  tasks:
+    - name: setup rclone configuration
+      template:
+        src: ../templates/.config/rclone/rclone.conf
+        dest: "{{ ansible_env.HOME }}/.config/rclone/rclone.conf"
+    
+    - name: copy backup launch agents
+      template:
+        src: "../templates/{{item}}"
+        dest: "{{ansible_env.HOME}}/{{item}}"
+      loop:
+        - Library/LaunchAgents/com.user.backup.wasabi.plist
+        - Library/LaunchAgents/com.user.backup.icloud.plist
+
+    - name: configure wasabi include list
+      template:
+        src: "../templates/{{item}}"
+        dest: "{{ansible_env.HOME}}/{{item}}"
+      loop:
+        - .config/backup/wasabi.conf
+        - .config/backup/icloud.conf
+
+    - name: load launchd plist
+      community.general.launchd:
+        name: "{{item}}"
+        state: reloaded
+      loop:
+        - com.user.backup.wasabi
+        - com.user.backup.icloud

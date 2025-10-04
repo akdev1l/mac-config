@@ -1,4 +1,7 @@
 ---
+- name: Configure backup services
+  import_playbook: backup/configure.yml
+
 - name: Configure Homebrew
   import_playbook: homebrew.yml
 

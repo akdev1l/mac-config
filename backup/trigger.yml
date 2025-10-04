@@ -1,0 +1,11 @@
+---
+- name: trigger cloud backups
+  hosts: localhost
+  tasks:
+    - name: start backup services
+      community.general.launchd:
+        name: "{{item}}"
+        state: started
+      loop:
+        - com.user.backup.wasabi
+        - com.user.backup.icloud

@@ -8,14 +8,14 @@
       - htop
       - tmux
       - macvim
+      - nvim
       - fzf
       - vivid
       - jq
       - ripgrep
       - git
       - gpg2
-      - homebrew/cask-fonts/font-fira-code
-      - homebrew/cask-fonts/font-fira-mono-for-powerline
+      - font-fira-code-nerd-font
       - zsh-syntax-highlighting
       - zsh-autosuggestions
   tasks:

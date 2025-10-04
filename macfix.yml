@@ -2,6 +2,7 @@
 - name: install fixes for Mac annoyances
   hosts: localhost
   vars:
+    mac_config_fix_screenshot_location: "{{ansible_env.HOME}}/iCloud/pictures/Screenshots"
     mac_config_fix_apps:
       - rectangle
       - maccy
@@ -12,5 +13,16 @@
         state: present
         name: "{{mac_config_fix_apps}}"
 
+    - name: get screenshot location
+      shell: "defaults read com.apple.screencapture location"
+      changed_when: no
+      register: screenshot_read
+
     - name: fix the default location for screenshots
-      shell: "defaults write com.apple.screencapture location {{ansible_env.HOME}}/Documents/workshop/screenshots"
+      shell: "defaults write com.apple.screencapture location {{mac_config_fix_screenshot_location}}"
+      when: screenshot_read.stdout != mac_config_fix_screenshot_location
+
+    - name: deploy caps delay fix
+      template:
+        src: Library/LaunchAgents/com.user.capsdelayfix.plist
+        dest: "{{ansible_env.HOME}}/Library/LaunchAgents/com.user.capsdelayfix.plist"

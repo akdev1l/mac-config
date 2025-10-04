@@ -1,0 +1,28 @@
+---
+- name: create home directory structure
+  hosts: localhost
+  vars:
+    mac_config_home_dir_dirs:
+      - ".config/backup"
+      - "Documents/workshop/code"
+      - "iCloud/books"
+      - "iCloud/documents"
+      - "iCloud/downloads"
+      - "iCloud/music"
+      - "iCloud/pictures"
+      - "iCloud/videos"
+  tasks:
+    - name: configure iCloud symlink
+      file:
+        path: "{{ansible_env.HOME}}/{{item.path}}"
+        state: link
+        src: "{{item.src}}"
+      loop:
+        - path: "iCloud"
+          src: "{{ansible_env.HOME}}/Library/Mobile Documents/com~apple~CloudDocs"
+      
+    - name: create directory tree
+      file:
+        path: "{{ansible_env.HOME}}/{{item}}"
+        state: directory
+      loop: "{{mac_config_home_dir_dirs}}"
